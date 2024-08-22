@@ -47,7 +47,7 @@ export function MainNav() {
           <PolkadotLogo
             width={30}
             height={30}
-            className="animate-polkadot-colors mr-2 shadow-sm w-64"
+            className="animate-polkadot-colors mr-2 shadow-sm w-6"
           />
           <span className="font-bold text hover:underline">Polkadot Study</span>
           <span className="sr-only">Polkadot Study</span>
@@ -93,7 +93,7 @@ export function MainNav() {
               className="rounded-full w-8 h-8 bg-background"
               asChild
             >
-              <Link href="https://github.com/salimi-my/shadcn-ui-sidebar">
+              <Link href="https://github.com/PolkadotStudy/polkadot.study">
                 <GitHubLogoIcon className="h-[1.2rem] w-[1.2rem]" />
               </Link>
             </Button>

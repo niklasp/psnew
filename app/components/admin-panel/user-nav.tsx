@@ -4,11 +4,7 @@ import Link from "next/link";
 import { LayoutGrid, LogOut, User } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage
-} from "@/app/components/ui/avatar";
+import Identicon from "@polkadot/react-identicon";
 import {
   Tooltip,
   TooltipContent,
@@ -36,10 +32,11 @@ export function UserNav() {
                 variant="outline"
                 className="relative h-8 w-8 rounded-full"
               >
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src="#" alt="Avatar" />
-                  <AvatarFallback className="bg-transparent">JD</AvatarFallback>
-                </Avatar>
+                <Identicon
+                  size={28}
+                  theme="polkadot"
+                  value={"5CwW67PPdZQQCcdWJVaRJCepSQSrtKUumDAGa7UZbBKwd9R2"}
+                />
               </Button>
             </DropdownMenuTrigger>
           </TooltipTrigger>
@@ -72,10 +69,10 @@ export function UserNav() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {}}>
+        {/* <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {}}>
           <LogOut className="w-4 h-4 mr-3 text-muted-foreground" />
           Sign out
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
       </DropdownMenuContent>
     </DropdownMenu>
   );

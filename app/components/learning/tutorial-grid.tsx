@@ -11,27 +11,39 @@ import {
   BookHeart
 } from "lucide-react";
 
-export function TutorialGrid({ tutorials }: { tutorials: any[] }) {
+export function TutorialGrid({
+  tutorials,
+  className,
+  withFilters = false,
+  title = ""
+}: {
+  tutorials: any[];
+  className?: string;
+  withFilters?: boolean;
+  title?: string;
+}) {
   const { filters } = useApp();
 
-  const filteredTutorials = tutorials
-    .filter(({ meta: { category } }) => {
-      return (
-        filters.category.length === 0 || filters.category.includes(category)
-      );
-    })
-    .filter(({ meta: { tags } }) => {
-      return (
-        filters.tags.length === 0 ||
-        filters.tags.some((tag) => tags.includes(tag))
-      );
-    })
-    .filter(({ meta: { level } }) => {
-      return (
-        filters.level.length === 0 ||
-        filters.level.map((l) => l.toLowerCase()).includes(level)
-      );
-    });
+  const filteredTutorials = withFilters
+    ? tutorials
+        .filter(({ meta: { category } }) => {
+          return (
+            filters.category.length === 0 || filters.category.includes(category)
+          );
+        })
+        .filter(({ meta: { tags } }) => {
+          return (
+            filters.tags.length === 0 ||
+            filters.tags.some((tag) => tags.includes(tag))
+          );
+        })
+        .filter(({ meta: { level } }) => {
+          return (
+            filters.level.length === 0 ||
+            filters.level.map((l) => l.toLowerCase()).includes(level)
+          );
+        })
+    : tutorials;
 
   const { category, tags, level } = filters;
 
@@ -49,22 +61,24 @@ export function TutorialGrid({ tutorials }: { tutorials: any[] }) {
   } ${parts.length > 0 ? `${parts.join(" ")}` : ""}`;
 
   return (
-    <>
-      <section>
+    <section className={className}>
+      {title && title !== "" && (
         <h3 className="text-xl font-bold sm:truncate sm:tracking-tight flex items-center my-4 mb-0">
           <BookOpen className="mr-2" />
-          Browse the full catalog{" "}
+          {title}
         </h3>
+      )}
+      {withFilters && (
         <p className="text-polkadot-primary-500 px-1 text-sm font-normal mb-4 max-w-1/2">
           {resultText}
         </p>
+      )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
-          {filteredTutorials.map(({ tutorial, meta }) => (
-            <TutorialCard key={tutorial} tutorial={tutorial} meta={meta} />
-          ))}
-        </div>
-      </section>
-    </>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
+        {filteredTutorials.map(({ tutorial, meta }) => (
+          <TutorialCard key={tutorial} tutorial={tutorial} meta={meta} />
+        ))}
+      </div>
+    </section>
   );
 }

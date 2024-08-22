@@ -5,20 +5,27 @@ export function TutorialSyllabus({ sections, tutorial }) {
   return (
     <div className="w-full p-8">
       <h3 className="text-lg font-bold">Syllabus</h3>
-      <p className="mb-4">{sections.length} sections</p>
-      <ul className="w-2/3">
+      <div className="mb-4 flex gap-2">
+        <span>{sections.length} sections</span>
+        <span>{4} quizzes</span>
+        <span>{8} sections</span>
+      </div>
+      <ul className="w-2/3 divide-y">
         {sections.map((section, index) => (
           <li
             key={section.fileName}
-            className={cn("py-4", {
-              "border-b": index !== sections.length - 1
-            })}
+            className="rounded-md transition-all duration-300 group"
           >
-            <Link href={`/tutorials/${tutorial}/${section.fileName}`}>
-              <span className="rounded-full bg-polkadot-secondary w-8 h-8 inline-flex items-center justify-center text-white mr-2">
+            <Link
+              className="p-4 block"
+              href={`/tutorials/${tutorial}/${section.fileName}`}
+            >
+              <span className="group-hover:border border-polkadot-secondary-200 rounded-full bg-polkadot-secondary w-8 h-8 inline-flex items-center justify-center text-white mr-4">
                 {index}
               </span>
-              {toTitleCase(section.name)}
+              <span className="group-hover:translate-x-1 inline-block transition-transform">
+                {toTitleCase(section.name)}
+              </span>
             </Link>
           </li>
         ))}

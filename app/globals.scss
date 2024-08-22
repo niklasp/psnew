@@ -1,6 +1,6 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
   @layer base {
     :root {
@@ -12,8 +12,8 @@
 
       --header-height: 3.5rem;
 
-      --background: hsl(0 0% 100%);
-      --foreground: hsl(240 10% 3.9%);
+      --background: 0 0% 100%;
+      --foreground: 240 10% 3.9%;
 
       --card: 0 0% 100%;
       --card-foreground: 240 10% 3.9%;
@@ -105,18 +105,24 @@ pre code .sh__line::before {
   color: #a4a4a4;
 }
 
+p a {
+  @apply text-polkadot-primary-500 dark:text-polkadot-tertiary-500 underline;
+}
 
 .bubble {
   position: absolute;
-  width: 50%;
-  height: 38%;
-  background: radial-gradient(circle, var(--color) 0%, transparent 60%);
-  filter: blur(80px);
+  width: 1000px;
+  height: 1000px;
+  background: radial-gradient(circle, var(--color) 0%, transparent 20%);
+  background: var(--color);
+  filter: blur(100px);
   border-radius: 50%;
-  animation: float 25s ease-in-out infinite, rotate 30s linear infinite;
+  // animation: float 25s ease-in-out infinite, rotate 30s linear infinite;
+  animation: rotate 30s linear infinite;
   opacity: 0.8;
   z-index: -1;
   transform-origin: center center; /* This keeps the bubbles centered during rotation */
+  mix-blend-mode: difference;
 }
 
 .bubble:nth-child(1) {
@@ -124,9 +130,6 @@ pre code .sh__line::before {
   top: 10%;
   left: 20%;
   animation-duration: 18s, 30s;
-  animation-delay: 0s, 0s;
-  width: 500px;
-  height: 50%;
 }
 
 .bubble:nth-child(2) {
@@ -134,7 +137,7 @@ pre code .sh__line::before {
   top: 60%;
   left: 20%;
   animation-duration: 20s, 32s;
-  animation-delay: 2s, 2s;
+  
 }
 
 .bubble:nth-child(3) {
@@ -142,7 +145,7 @@ pre code .sh__line::before {
   top: 30%;
   left: 70%;
   animation-duration: 22s, 34s;
-  animation-delay: 4s, 4s;
+  
 }
 
 .bubble:nth-child(4) {
@@ -150,7 +153,7 @@ pre code .sh__line::before {
   top: 80%;
   left: 50%;
   animation-duration: 26s, 36s;
-  animation-delay: 6s, 6s;
+  
 }
 
 .bubble:nth-child(5) {
@@ -158,12 +161,12 @@ pre code .sh__line::before {
   top: 40%;
   left: 80%;
   animation-duration: 24s, 38s;
-  animation-delay: 8s, 8s;
+  
 }
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(0) translateX(0) scale(1);
+    transform: translateX(0) translateX(0) scale(1);
   }
   25% {
     transform: translateY(-40px) translateX(30px) scale(1.1);
@@ -178,18 +181,27 @@ pre code .sh__line::before {
 
 @keyframes rotate {
   0%, 100% {
-    transform: rotate(0deg) translateX(0) translateY(0);
+    transform: rotate(0deg) translate3d(0, 0, 0);
   }
   25% {
-    transform: rotate(90deg) translateX(-100%) translateY(0);
+    transform: rotate(90deg) translate3d(-100%, 0, 0);
   }
   50% {
-    transform: rotate(180deg) translateX(-100%) translateY(-100%);
+    transform: rotate(180deg) translate3d(-100%, -100%, 0);
   }
   75% {
-    transform: rotate(270deg) translateX(0) translateY(-100%);
+    transform: rotate(270deg) translate3d(0, -100%);
   }
   100% {
-    transform: rotate(360deg) translateX(0) translateY(0);
+    transform: rotate(360deg) translate3d(0, 0, 0);
   }
 }
+
+// .top-blob {
+//   width: 100vw;
+//   height: 30vh;
+//   top: 0;
+//   background-size: 100% 100%;
+//   background-position: 0px 0px,0px 0px,0px 0px,0px 0px,0px 0px;
+//   background-image: radial-gradient(60% 90% at 50% -50%, var(--polkadot-pink) 1%, #FF000000 99%);
+// }

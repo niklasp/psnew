@@ -8,13 +8,14 @@ import {
   useSelectedLayoutSegment,
   useSelectedLayoutSegments
 } from "next/navigation";
+import { Sidebar } from "../sidebars/sidebar";
 
 export default function AdminPanelLayout({
   children,
-  sidebarElement
+  sidebarElement = <Sidebar />
 }: {
   children: React.ReactNode;
-  sidebarElement: React.ReactNode;
+  sidebarElement?: React.ReactNode;
 }) {
   const sidebar = useStore(useSidebarToggle, (state) => state);
 
@@ -32,14 +33,7 @@ export default function AdminPanelLayout({
       >
         {children}
       </main>
-      <footer
-        className={cn(
-          "transition-[margin-left] ease-in-out duration-300",
-          sidebar?.isOpen === false ? "lg:ml-[90px]" : "lg:ml-72"
-        )}
-      >
-        <Footer />
-      </footer>
+      <Footer />
     </>
   );
 }

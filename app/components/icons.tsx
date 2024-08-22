@@ -14,8 +14,22 @@ export function PolkadotLogo(props: React.SVGProps<SVGSVGElement>) {
       height={40}
       {...props}
     >
-      <ellipse className="st0" cx="663" cy="147.9" rx="254.3" ry="147.9" />
-      <ellipse className="st0" cx="663" cy="1262.3" rx="254.3" ry="147.9" />
+      <ellipse
+        className="st0"
+        cx="663"
+        cy="147.9"
+        rx="254.3"
+        ry="147.9"
+        fill="var(--polkadot-purple)"
+      />
+      <ellipse
+        className="st0"
+        cx="663"
+        cy="1262.3"
+        rx="254.3"
+        ry="147.9"
+        fill="var(--polkadot-purple)"
+      />
       <ellipse
         transform="matrix(0.5 -0.866 0.866 0.5 -279.1512 369.5916)"
         className="st0"
@@ -23,6 +37,7 @@ export function PolkadotLogo(props: React.SVGProps<SVGSVGElement>) {
         cy="426.5"
         rx="254.3"
         ry="148"
+        fill="var(--polkadot-purple)"
       />
       <ellipse
         transform="matrix(0.5 -0.866 0.866 0.5 -279.1552 1483.9517)"
@@ -31,6 +46,7 @@ export function PolkadotLogo(props: React.SVGProps<SVGSVGElement>) {
         cy="983.7"
         rx="254.3"
         ry="147.9"
+        fill="var(--polkadot-purple)"
       />
       <ellipse
         transform="matrix(0.866 -0.5 0.5 0.866 -467.6798 222.044)"
@@ -39,6 +55,7 @@ export function PolkadotLogo(props: React.SVGProps<SVGSVGElement>) {
         cy="983.7"
         rx="148"
         ry="254.3"
+        fill="var(--polkadot-purple)"
       />
       <ellipse
         transform="matrix(0.866 -0.5 0.5 0.866 -59.8007 629.9254)"
@@ -47,7 +64,67 @@ export function PolkadotLogo(props: React.SVGProps<SVGSVGElement>) {
         cy="426.6"
         rx="147.9"
         ry="254.3"
+        fill="var(--polkadot-purple)"
       />
+    </svg>
+  );
+}
+
+export function PolkadotStudyLogo(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width="200"
+      height="200"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 200 200"
+      {...props}
+    >
+      <g
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="lucide lucide-graduation-cap"
+        transform="translate(58,58) scale(3.5)"
+        fill="none"
+      >
+        <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+        <path d="M22 10v6" />
+        <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+      </g>
+
+      {/* <circle cx="100" cy="100" r="25" fill="none" stroke-width="6" />
+
+      <circle cx="100" cy="100" r="40" fill="none" stroke-width="6" /> */}
+
+      {/* <circle cx="100" cy="100" r="40" fill="none" stroke-width="4" /> */}
+
+      {/* <circle cx="100" cy="65" r="4" />
+      <circle cx="115.5" cy="70" r="4" />
+      <circle cx="130" cy="82.5" r="4" />
+      <circle cx="135" cy="100" r="4" />
+      <circle cx="130" cy="117.5" r="4" />
+      <circle cx="115.5" cy="130" r="4" />
+      <circle cx="100" cy="135" r="4" />
+      <circle cx="84.5" cy="130" r="4" />
+      <circle cx="70" cy="117.5" r="4" />
+      <circle cx="65" cy="100" r="4" />
+      <circle cx="70" cy="82.5" r="4" />
+      <circle cx="84.5" cy="70" r="4" /> */}
+      <g className="group-hover:animate-spin-slow origin-center">
+        <circle cx="100" cy="40" r="8" fill="#e6007a" stroke="none" />
+        <circle cx="130" cy="50" r="8" stroke="none" />
+        <circle cx="150" cy="70" r="8" fill="#e6007a" stroke="none" />
+        <circle cx="160" cy="100" r="8" stroke="none" />
+        <circle cx="150" cy="130" r="8" fill="#e6007a" stroke="none" />
+        <circle cx="130" cy="150" r="8" stroke="none" />
+        <circle cx="100" cy="160" r="8" fill="#e6007a" stroke="none" />
+        <circle cx="70" cy="150" r="8" stroke="none" />
+        <circle cx="50" cy="130" r="8" fill="#e6007a" stroke="none" />
+        <circle cx="40" cy="100" r="8" stroke="none" />
+        <circle cx="50" cy="70" r="8" fill="#e6007a" stroke="none" />
+        <circle cx="70" cy="50" r="8" stroke="none" />
+      </g>
     </svg>
   );
 }

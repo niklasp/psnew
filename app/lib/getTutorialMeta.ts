@@ -7,12 +7,12 @@ export async function getTutorialMeta(tutorial: string) {
     description: "",
     category: "Uncategorized",
     tags: [],
-    sections: [],
+    sections: []
   };
   try {
     meta = {
       ...meta,
-      ...(await import(`@/tutorials/${tutorial}/meta`)).meta,
+      ...(await import(`@/content/tutorials/${tutorial}/meta`)).meta
     };
   } catch (error) {
     console.warn(

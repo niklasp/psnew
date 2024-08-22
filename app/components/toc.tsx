@@ -2,6 +2,7 @@ import Link from "next/link";
 import path from "path";
 import fs from "fs";
 import { toTitleCase } from "../lib/utils";
+import { getTutorialPath, getTutorialSections } from "../lib/util-path";
 
 interface TOCProps {
   currentTutorial: string;
@@ -18,28 +19,7 @@ export default function TOC({
 }: TOCProps) {
   const { category, sections } = currentMeta;
 
-  const tutorialsDirectory = path.join(
-    process.cwd(),
-    "tutorials",
-    currentTutorial
-  );
-
-  // Fetch all .mdx files from the current tutorial directory
-  const allFiles = fs
-    .readdirSync(tutorialsDirectory)
-    .filter((file) => file.endsWith(".mdx"));
-
-  // Create a list of sections, using the meta.ts or the file name as a fallback
-  const sectionList = allFiles.map((fileName) => {
-    const fileBaseName = fileName.replace(".mdx", "");
-    const sectionMeta = sections?.find(
-      (section) => section.fileName === fileBaseName
-    );
-    return {
-      fileName: fileBaseName,
-      title: sectionMeta ? sectionMeta.title : toTitleCase(fileBaseName)
-    };
-  });
+  const sectionList = getTutorialSections(currentTutorial, sections);
 
   return (
     <div className="toc">

@@ -1,15 +1,23 @@
-import AdminPanelLayout from "@/app/components/admin-panel/admin-panel-layout";
+import AdminPanelLayout from "../components/admin-panel/admin-panel-layout";
+import { BlogSidebar } from "../components/sidebars/blog-sidebar";
+import { Sidebar } from "../components/sidebars/sidebar";
+import { TutorialsSidebar } from "../components/sidebars/tutorials-sidebar";
+import { generateTutorialToc } from "../lib/generate-tutorial-toc";
 
-export default function DemoLayout({
+export default async function TutorialsLayout({
   children,
-  sidebar
+  params
 }: {
   children: React.ReactNode;
-  sidebar: React.ReactNode;
+  params: any;
 }) {
-  console.log("aaa sidebar", sidebar);
+  const tutorialsToc = await generateTutorialToc();
 
   return (
-    <AdminPanelLayout sidebarElement={sidebar}>{children}</AdminPanelLayout>
+    <AdminPanelLayout
+      sidebarElement={<TutorialsSidebar tutorialsToc={tutorialsToc} />}
+    >
+      {children}
+    </AdminPanelLayout>
   );
 }

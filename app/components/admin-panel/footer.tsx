@@ -1,22 +1,33 @@
 import Link from "next/link";
+import { PoweredByPolkadot } from "../ui/powered-by-polkadot";
 
 export function Footer() {
   return (
-    <div className="z-20 w-full bg-background/95 shadow backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-4 md:mx-8 flex h-14 items-center">
-        <p className="text-xs md:text-sm leading-loose text-muted-foreground text-left">
-          Built on top of{" "}
+    <footer className="py-6 md:py-0 border-t border-border/40 shadow-inner mt-16">
+      <div className="container flex flex-col items-center justify-center gap-4 md:h-24 md:flex-row">
+        <p className="text-balance text-center text-sm leading-loose text-muted-foreground">
+          {/* Inspired by{" "}
           <Link
-            href="https://ui.shadcn.com"
+            href="https://github.com/PolkadotStudy/polkadot.study"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium underline underline-offset-4"
           >
-            shadcn/ui
+            shadcn/ui/sidebar
           </Link>
-          . The source code is available on{" "}
+          ,{" "}
           <Link
-            href="https://github.com/salimi-my/shadcn-ui-sidebar"
+            href="https://react.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium underline underline-offset-4"
+          >
+            react.dev
+          </Link> */}
+          Polkadot Study is open source. Anyone can contribute and become an
+          author on{" "}
+          <Link
+            href="https://github.com/PolkadotStudy/polkadot.study"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium underline underline-offset-4"
@@ -25,7 +36,8 @@ export function Footer() {
           </Link>
           .
         </p>
+        <PoweredByPolkadot />
       </div>
-    </div>
+    </footer>
   );
 }

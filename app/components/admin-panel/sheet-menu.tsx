@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MenuIcon, PanelsTopLeft } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
-import { Menu } from "@/app/components/admin-panel/menu";
+import { Menu } from "@/app/components/sidebars/menu";
 import {
   Sheet,
   SheetHeader,
@@ -14,8 +14,15 @@ export function SheetMenu() {
   return (
     <Sheet>
       <SheetTrigger className="lg:hidden" asChild>
-        <Button className="h-8" variant="outline" size="icon">
-          <MenuIcon size={20} />
+        <Button
+          className="h-8 outline-none bg-transparent border-none shadow-none hover:bg-transparent group"
+          variant="outline"
+          size="icon"
+        >
+          <MenuIcon
+            size={22}
+            className="-ml-1 group-hover:stroke-polkadot-secondary-500 transition-all"
+          />
         </Button>
       </SheetTrigger>
       <SheetContent className="sm:w-72 px-3 h-full flex flex-col" side="left">

@@ -1,0 +1,35 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Central Dot -->
+  <circle cx="100" cy="100" r="10" fill="#E6007A" />
+  
+  <!-- Innermost Solid Ring -->
+  <circle cx="100" cy="100" r="20" fill="none" stroke="#CCCCCC" stroke-width="4" />
+  
+  <!-- First Ring of 12 Smaller Dots -->
+  <circle cx="100" cy="65" r="4" fill="#CCCCCC" />
+  <circle cx="115.5" cy="70" r="4" fill="#CCCCCC" />
+  <circle cx="130" cy="82.5" r="4" fill="#CCCCCC" />
+  <circle cx="135" cy="100" r="4" fill="#CCCCCC" />
+  <circle cx="130" cy="117.5" r="4" fill="#CCCCCC" />
+  <circle cx="115.5" cy="130" r="4" fill="#CCCCCC" />
+  <circle cx="100" cy="135" r="4" fill="#CCCCCC" />
+  <circle cx="84.5" cy="130" r="4" fill="#CCCCCC" />
+  <circle cx="70" cy="117.5" r="4" fill="#CCCCCC" />
+  <circle cx="65" cy="100" r="4" fill="#CCCCCC" />
+  <circle cx="70" cy="82.5" r="4" fill="#CCCCCC" />
+  <circle cx="84.5" cy="70" r="4" fill="#CCCCCC" />
+  
+  <!-- Outer Ring of 12 Larger Dots -->
+  <circle cx="100" cy="40" r="5" fill="#999999" />
+  <circle cx="130" cy="50" r="5" fill="#999999" />
+  <circle cx="150" cy="70" r="5" fill="#999999" />
+  <circle cx="160" cy="100" r="5" fill="#999999" />
+  <circle cx="150" cy="130" r="5" fill="#999999" />
+  <circle cx="130" cy="150" r="5" fill="#999999" />
+  <circle cx="100" cy="160" r="5" fill="#999999" />
+  <circle cx="70" cy="150" r="5" fill="#999999" />
+  <circle cx="50" cy="130" r="5" fill="#999999" />
+  <circle cx="40" cy="100" r="5" fill="#999999" />
+  <circle cx="50" cy="70" r="5" fill="#999999" />
+  <circle cx="70" cy="50" r="5" fill="#999999" />
+</svg>

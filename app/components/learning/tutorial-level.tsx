@@ -5,19 +5,27 @@ export type difficultyType = "beginner" | "intermediate" | "expert";
 
 export function TutorialLevel({
   difficulty,
-  className
+  className,
+  size = "default"
 }: {
   difficulty: difficultyType;
   className?: string;
+  size?: "default" | "lg";
 }) {
+  const iconSize = size === "default" ? 12 : 24;
+
   return (
-    <span
+    <div
       className={cn(
-        "inline-flex items-center text-sm",
+        "items-center",
+        {
+          "flex flex-col text-lg rounded-lg p-4": size === "lg",
+          "inline-flex text-sm px-1.5 py-0.5 rounded-md": size === "default"
+        },
         {
           "text-green-700 border-green-700 dark:text-green-200 border-2 dark:border-green-200":
             difficulty === "beginner",
-          "text-yellow-500 border-yellow-500 dark:text-yellow-200 border-2 dark:border-yellow-200":
+          "text-yellow-600 border-yellow-600 dark:text-yellow-200 border-2 dark:border-yellow-200":
             difficulty === "intermediate",
           "text-orange-700 border-orange-700 dark:text-orange-200 border-2 dark:border-orange-200":
             difficulty === "expert"
@@ -27,30 +35,33 @@ export function TutorialLevel({
     >
       {difficulty === "beginner" && (
         <>
-          <CircleSlash size={12} />
-          <Circle size={12} />
-          <Circle size={12} className="mr-1" />
+          <span className="flex">
+            <CircleSlash size={iconSize} />
+            <Circle size={iconSize} />
+            <Circle size={iconSize} className="mr-1" />
+          </span>
           Beginner
         </>
       )}
       {difficulty === "intermediate" && (
         <>
-          {" "}
-          <CircleSlash size={12} />
-          <CircleSlash size={12} />
-          <Circle size={12} className="mr-1" />
+          <span className="flex">
+            <CircleSlash size={iconSize} />
+            <CircleSlash size={iconSize} />
+            <Circle size={iconSize} className="mr-1" />
+          </span>
           Intermediate
         </>
       )}
       {difficulty === "expert" && (
         <>
           {" "}
-          <CircleSlash size={12} />
-          <CircleSlash size={12} />
-          <CircleSlash size={12} className="mr-1" />
+          <CircleSlash size={iconSize} />
+          <CircleSlash size={iconSize} />
+          <CircleSlash size={iconSize} className="mr-1" />
           Expert
         </>
       )}
-    </span>
+    </div>
   );
 }

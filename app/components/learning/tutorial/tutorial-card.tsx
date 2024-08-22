@@ -17,13 +17,14 @@ export default function TutorialCard({
       className={cn(
         "group cursor-pointer rounded-3xl px-6 pt-6 pb-12 overflow-visible bg-white h-full flex flex-col text-ellipsis dark:bg-slate-800 dark:text-white",
         "relative transition-all duration-300 border-2 border-[var(--polkadot-purple)]",
-        "after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-[var(--polkadot-purple)] after:z-[-1] after:rounded-3xl hover:after:translate-x-[10px] hover:after:translate-y-[10px] after:transition-all after:duration-300",
+        "after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-[var(--polkadot-purple)] after:z-[-1] after:rounded-3xl hover:after:translate-x-[10px] hover:after:translate-y-[10px] after:transition-all after:duration-300 after:hover:shadow-sm",
+        "shadow-lg hover:shadow-none",
         { "min-h-[360px]": !minimal }
       )}
     >
       <Link
         href={`/tutorials/${tutorial}`}
-        className="inset-0 absolute rounded-3xl z-[0]"
+        className="absolute inset-0 rounded-3xl z-[0]"
       />
       <div className="flex flex-col h-full items-start">
         {meta.level && (

@@ -45,7 +45,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn("bg-background", fontSans.className)}>
+      <body
+        className={cn(
+          "bg-gradient-to-br from-[#ffdee9] via-[#fffbef] to-[#e7e5ee] dark:from-[#1a202c] dark:via-[#2d3748] dark:to-[#1a202c]",
+          fontSans.className
+        )}
+      >
         <Providers>
           <Navbar title="" />
           {children}

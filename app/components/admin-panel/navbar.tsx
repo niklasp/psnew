@@ -1,30 +1,57 @@
+"use client";
+
 import { ModeToggle } from "@/app/components/mode-toggle";
 import { UserNav } from "@/app/components/admin-panel/user-nav";
 import { SheetMenu } from "@/app/components/admin-panel/sheet-menu";
 import Link from "next/link";
-import { PolkadotLogo } from "../icons";
+import { PolkadotLogo, PolkadotStudyLogo } from "../icons";
 import { SearchIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { useEffect, useState } from "react";
+import { cn } from "@/app/lib/utils";
 
 interface NavbarProps {
   title: string;
 }
 
 export function Navbar({ title }: NavbarProps) {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
   return (
-    <header className="sticky top-0 z-10 w-full backdrop-blur supports-[backdrop-filter]:bg-background/2">
+    <header
+      className={cn("sticky top-0 z-10 w-full transition-all duration-500", {
+        "shadow-sm border-b backdrop-blur ": isScrolled,
+        "shadow-none border-b-0 bg-transparent": !isScrolled
+      })}
+    >
       <div className="mx-4 sm:mx-8 flex h-[var(--header-height)] items-center">
         <div className="flex items-center space-x-4 lg:space-x-0 w-full">
           <SheetMenu />
           <Link
             href="/"
-            className="flex justify-start items-center hover:opacity-85 transition-opacity duration-300 w-72"
+            className="flex justify-start items-center hover:opacity-85 transition-opacity duration-300 w-72 group"
           >
-            <PolkadotLogo
-              width={30}
-              height={30}
-              className="animate-polkadot-colors mr-2 shadow-sm"
+            <PolkadotStudyLogo
+              width={50}
+              height={50}
+              className="mr-1 fill-black dark:fill-white stroke-black dark:stroke-white"
             />
             <span className="font-bold text hover:underline">
               Polkadot Study
@@ -32,7 +59,7 @@ export function Navbar({ title }: NavbarProps) {
             <span className="sr-only">Polkadot Study</span>
           </Link>
           <div className="flex flex-row justify-between w-full !ml-16">
-            <nav className="hidden md:flex items-center space-x-6 flex-1">
+            <nav className="hidden lg:flex items-center space-x-6 flex-1">
               <Link
                 href="/tutorials"
                 className="text-sm font-medium hover:text-[var(--polkadot-purple)] transition"
@@ -48,7 +75,7 @@ export function Navbar({ title }: NavbarProps) {
                 For Authors
               </Link>
               <Link
-                href="#"
+                href="/blog"
                 className="text-sm font-medium hover:text-[var(--polkadot-purple)] transition"
                 prefetch={false}
               >
@@ -74,7 +101,7 @@ export function Navbar({ title }: NavbarProps) {
                 className="rounded-full w-8 h-8 bg-background"
                 asChild
               >
-                <Link href="https://github.com/salimi-my/shadcn-ui-sidebar">
+                <Link href="https://github.com/PolkadotStudy/polkadot.study">
                   <GitHubLogoIcon className="h-[1.2rem] w-[1.2rem]" />
                 </Link>
               </Button>

@@ -6,11 +6,18 @@ import TOC from "@/app/components/toc";
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/app/components/mdx";
 import { toTitleCase } from "../../../lib/utils";
+import AdminPanelLayout from "@/app/components/admin-panel/admin-panel-layout";
+import { Sidebar } from "@/app/components/sidebars/sidebar";
 
 export default async function TutorialSectionPage({ params }) {
   const { tutorial, section } = params;
 
-  const tutorialPath = path.join(process.cwd(), "tutorials", tutorial);
+  const tutorialPath = path.join(
+    process.cwd(),
+    "content",
+    "tutorials",
+    tutorial
+  );
   const filePath = path.join(tutorialPath, `${section}.mdx`);
 
   if (!fs.existsSync(filePath)) {
@@ -35,7 +42,7 @@ export default async function TutorialSectionPage({ params }) {
   const { sections, category } = currentMeta;
 
   // Load all tutorials to find other tutorials in the same category
-  const tutorialsDirectory = path.join(process.cwd(), "tutorials");
+  const tutorialsDirectory = path.join(process.cwd(), "content", "tutorials");
   const tutorialDirs = fs
     .readdirSync(tutorialsDirectory)
     .filter((dir) =>

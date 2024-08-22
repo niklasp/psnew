@@ -4,6 +4,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
 import React from "react";
 import Quiz from "./learning/quiz/index";
+import remarkAdmonitions from "remark-admonitions";
+import Admonition from "./learning/admoniton";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -83,8 +85,8 @@ function createHeading(level) {
         React.createElement("a", {
           href: `#${slug}`,
           key: `link-${slug}`,
-          className: "anchor",
-        }),
+          className: "anchor"
+        })
       ],
       children
     );
@@ -108,6 +110,7 @@ let components = {
   code: Code,
   Table,
   Quiz,
+  Admonition: Admonition
 };
 
 export function CustomMDX(props) {

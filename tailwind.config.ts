@@ -35,8 +35,8 @@ const config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))"
@@ -107,6 +107,10 @@ const config = {
             fill: "var(--polkadot-pink)",
             color: "var(--polkadot-pink)"
           }
+        },
+        "slide-down": {
+          "0%": { top: "0%" },
+          "90%, 100%": { top: "calc(100% - 50px)" }
         }
       },
       animation: {
@@ -114,8 +118,9 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "collapsible-down": "collapsible-down 0.2s ease-out",
         "collapsible-up": "collapsible-up 0.2s ease-out",
-        "spin-slow": "spin-slow 30s linear infinite",
-        "polkadot-colors": "polkadot-colors linear 50s infinite"
+        "spin-slow": "spin-slow 10s linear infinite",
+        "polkadot-colors": "polkadot-colors linear 50s infinite",
+        "slide-down": "slide-down linear 4s infinite"
       }
     }
   },
