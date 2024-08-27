@@ -1,1 +1,1 @@
-pnpm update-tutorial-meta && git add content/tutorials/**/meta.ts
+pnpm run update-tutorial-meta && git add content/tutorials/**/meta.ts

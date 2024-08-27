@@ -1,5 +1,5 @@
 export const meta = {
-  lastUpdated: '2024-08-27T09:56:12.177Z',
+  lastUpdated: '2024-08-27T09:56:49.895Z',
   title: "Building a Tokengated Website with Polkadot.js and Next.js",
   description:
     "How to write a tokengated website with polkadot.js API and next.js",
