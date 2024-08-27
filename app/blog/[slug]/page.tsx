@@ -7,7 +7,7 @@ import generateBlogToc from "@/app/lib/generate-blog-toc";
 import { CustomMDX } from "@/app/components/mdx";
 import { ContentLayout } from "@/app/components/admin-panel/content-layout";
 import AdminPanelLayout from "@/app/components/admin-panel/admin-panel-layout";
-import { Breadcrumbs, generateBreadcrumbs } from "@/app/components/Breadcrumbs";
+import { Breadcrumbs, generateBreadcrumbs } from "@/app/components/breadcrumbs";
 
 interface BlogPostProps {
   params: {

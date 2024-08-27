@@ -13,7 +13,13 @@ import { StarFilledIcon } from "@radix-ui/react-icons";
 import { TutorialLevel } from "../tutorial-level";
 import Link from "next/link";
 
-export function TutorialIntroTop({ tutorial, meta }) {
+export function TutorialIntroTop({
+  tutorial,
+  meta
+}: {
+  tutorial: string;
+  meta: any;
+}) {
   return (
     <div className="max-w-5xl p-8 rounded-xl border-polkadot-secondary-500 border-2 flex flex-col md:flex-row mb-8 shadow-lg mt-12 z-10">
       <div className="w-full md:w-3/5 flex flex-col items-start">
@@ -50,7 +56,7 @@ export function TutorialIntroTop({ tutorial, meta }) {
       <div className="pl-8 w-full md:w-2/5">
         <h4 className="text-lg font-bold mb-3">What you will learn</h4>
         <ul>
-          {meta.learnings?.map((learning) => (
+          {meta.learnings?.map((learning: string) => (
             <li
               key={learning}
               className="flex flex-row justify-items-start items-start "

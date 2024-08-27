@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { cn, toTitleCase } from "@/app/lib/utils";
 
-export function TutorialSyllabus({ sections, tutorial }) {
+export function TutorialSyllabus({
+  sections,
+  tutorial
+}: {
+  sections: any;
+  tutorial: any;
+}) {
   return (
     <div className="w-full p-8">
       <h3 className="text-lg font-bold">Syllabus</h3>
@@ -11,7 +17,7 @@ export function TutorialSyllabus({ sections, tutorial }) {
         <span>{8} sections</span>
       </div>
       <ul className="w-2/3 divide-y">
-        {sections.map((section, index) => (
+        {sections.map((section: any, index: number) => (
           <li
             key={section.fileName}
             className="rounded-md transition-all duration-300 group"

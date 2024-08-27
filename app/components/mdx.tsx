@@ -6,13 +6,13 @@ import React from "react";
 import Quiz from "./learning/quiz/index";
 import Box from "./learning/box";
 
-function Table({ data }) {
-  let headers = data.headers.map((header, index) => (
+function Table({ data }: { data: any }) {
+  let headers = data.headers.map((header: string, index: number) => (
     <th key={index}>{header}</th>
   ));
-  let rows = data.rows.map((row, index) => (
+  let rows = data.rows.map((row: string[], index: number) => (
     <tr key={index}>
-      {row.map((cell, cellIndex) => (
+      {row.map((cell: string, cellIndex: number) => (
         <td key={cellIndex}>{cell}</td>
       ))}
     </tr>
@@ -28,34 +28,42 @@ function Table({ data }) {
   );
 }
 
-function CustomLink(props) {
-  let href = props.href;
+function CustomLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
+  const { href, children, ...rest } = props;
 
-  if (href.startsWith("/")) {
+  if (href?.startsWith("/")) {
     return (
-      <Link href={href} {...props}>
-        {props.children}
+      <Link href={href} {...rest}>
+        {children}
       </Link>
     );
   }
 
-  if (href.startsWith("#")) {
-    return <a {...props} />;
+  if (href?.startsWith("#")) {
+    return (
+      <a href={href} {...rest}>
+        {children}
+      </a>
+    );
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return (
+    <a target="_blank" rel="noopener noreferrer" href={href} {...rest}>
+      {children}
+    </a>
+  );
 }
 
-function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+function RoundedImage(props: { alt: string; src: string }) {
+  return <Image className="rounded-lg" {...props} />;
 }
 
-function Code({ children, ...props }) {
+function Code({ children, ...props }: { children: string }) {
   let codeHTML = highlight(children);
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
-function Pre({ children, ...props }) {
+function Pre({ children, ...props }: { children: React.ReactNode }) {
   return (
     <pre {...props} className="bg-gray-800">
       {children}
@@ -63,7 +71,7 @@ function Pre({ children, ...props }) {
   );
 }
 
-function slugify(str) {
+function slugify(str: string) {
   return str
     .toString()
     .toLowerCase()
@@ -74,8 +82,8 @@ function slugify(str) {
     .replace(/\-\-+/g, "-"); // Replace multiple - with single -
 }
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
+function createHeading(level: number) {
+  const Heading = ({ children }: { children: any }) => {
     let slug = slugify(children);
     return React.createElement(
       `h${level}`,
@@ -112,10 +120,14 @@ let components = {
   Box
 };
 
-export function CustomMDX(props) {
+export function CustomMDX(props: {
+  source: string;
+  components?: Record<string, React.ComponentType<any>>;
+}) {
   return (
     <MDXRemote
       {...props}
+      // @ts-ignore
       components={{ ...components, ...(props.components || {}) }}
     />
   );

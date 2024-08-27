@@ -64,12 +64,12 @@ export default function Quiz({
     setUserTries(0);
   };
 
-  const onChangeInput = (e) => {
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSubmitted(false);
     const parentLabel = e.target.parentNode;
-    const elIndex = Array.from(parentLabel.parentNode.children).indexOf(
-      parentLabel as Element
-    );
+    const elIndex = Array.from(
+      parentLabel?.parentElement?.children ?? []
+    ).indexOf(parentLabel as Element);
 
     const newItems = [...checkedState];
     newItems[elIndex] = e.target.checked;

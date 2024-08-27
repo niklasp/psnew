@@ -1,7 +1,7 @@
 import { BookHeart } from "lucide-react";
 import TutorialCard from "./tutorial/tutorial-card";
 
-export function FeaturedTutorials({ tutorials }) {
+export function FeaturedTutorials({ tutorials }: { tutorials: any[] }) {
   return (
     <section className="mb-12">
       <h4 className="text-xl font-bold sm:truncate sm:tracking-tight flex items-center my-4">

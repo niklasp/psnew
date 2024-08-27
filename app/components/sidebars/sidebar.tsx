@@ -1,13 +1,10 @@
 "use client";
 
-import { cn } from "@/app/lib/utils";
 import { useStore } from "@/app/hooks/use-store";
 import { useSidebarToggle } from "@/app/hooks/use-sidebar-toggle";
-import { SidebarToggle } from "@/app/components/admin-panel/sidebar-toggle";
 import { usePathname } from "next/navigation";
 import { FilterMenu } from "./filter-menu";
 import { Menu } from "./menu";
-import { BlogMenu } from "./blog-sidebar";
 import { SidebarLayout } from "./sidebar-layout";
 
 export function Sidebar({
@@ -36,9 +33,5 @@ export function Sidebar({
     })();
   }
 
-  return (
-    <SidebarLayout isOpen={sidebar.isOpen} setIsOpen={sidebar.setIsOpen}>
-      {sidebarElement}
-    </SidebarLayout>
-  );
+  return <SidebarLayout>{sidebarElement}</SidebarLayout>;
 }

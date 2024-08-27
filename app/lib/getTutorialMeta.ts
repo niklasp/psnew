@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { toTitleCase } from "./utils";
 import { getFileMetadata } from "./util-file";
+import { TutorialMeta } from "@/types";
 
 export async function getTutorialMeta(tutorial: string) {
   const tutorialPath = path.join(
@@ -21,7 +22,7 @@ export async function getTutorialMeta(tutorial: string) {
     duration: "1-2h",
     lastUpdated: "",
     sections: []
-  };
+  } as TutorialMeta;
 
   try {
     if (fs.existsSync(metaPath)) {

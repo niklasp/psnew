@@ -43,7 +43,7 @@ export default function TutorialCard({
           <div className="text-gray-600 dark:text-gray-300 flex gap-1 flex-col items-start">
             {meta.tags && (
               <p className="z-10 mb-2">
-                {meta.tags.map((tag) => (
+                {meta.tags.map((tag: string) => (
                   <Link
                     href="#"
                     key={tag}

@@ -17,7 +17,6 @@ const Particles = ({
   offset?: boolean;
 }) => {
   const mesh = useRef<InstancedMesh>(null);
-  const { viewport } = useThree();
 
   const dummy = useMemo(() => new Vector3(), []);
   const matrix = useMemo(() => new Matrix4(), []);
@@ -76,8 +75,8 @@ const Particles = ({
 
       dummy.copy(position);
       matrix.setPosition(dummy);
-      mesh.current.setMatrixAt(i, matrix);
-      mesh.current.setColorAt(i, color);
+      mesh.current?.setMatrixAt(i, matrix);
+      mesh.current?.setColorAt(i, color);
     });
 
     mesh.current.instanceMatrix.needsUpdate = true;
