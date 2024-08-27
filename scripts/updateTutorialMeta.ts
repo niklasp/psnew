@@ -1,9 +1,29 @@
 import fs from "fs";
 import path from "path";
+import { execSync } from "child_process";
 
 const tutorialsPath = path.join(process.cwd(), "content", "tutorials");
 
+function hasChangesInTutorial(tutorialPath: string): boolean {
+  try {
+    const result = execSync(
+      `git diff --quiet HEAD -- "${tutorialPath}" || echo "changed"`
+    )
+      .toString()
+      .trim();
+    return result === "changed";
+  } catch (error) {
+    console.error(`Error checking changes for ${tutorialPath}:`, error);
+    return false;
+  }
+}
+
 function updateTutorialMeta(tutorialPath: string) {
+  if (!hasChangesInTutorial(tutorialPath)) {
+    console.log(`No changes in ${tutorialPath}, skipping update.`);
+    return;
+  }
+
   const metaPath = path.join(tutorialPath, "meta.ts");
   const lastUpdated = new Date().toISOString();
 
