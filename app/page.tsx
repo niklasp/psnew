@@ -109,7 +109,8 @@ export default async function HomePage() {
                         Polkadot? Join our community of contributors!
                       </p>
                       <p className="mb-4">
-                        Our platform's code, tutorials, and documentation are{" "}
+                        Our platform&apos;s code, tutorials, and documentation
+                        are{" "}
                         <Link
                           href=""
                           className="text-polkadot-secondary hover:underline"

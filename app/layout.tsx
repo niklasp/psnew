@@ -39,12 +39,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children
-}: Readonly<{
+  children,
+  sidebar
+}: {
   children: React.ReactNode;
-}>) {
+  sidebar: React.ReactNode;
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={cn(
           "bg-gradient-to-br from-[#ffdee9] via-[#fffbef] to-[#e7e5ee] dark:from-[#1a202c] dark:via-[#2d3748] dark:to-[#1a202c]",
@@ -53,6 +55,7 @@ export default function RootLayout({
       >
         <Providers>
           <Navbar title="" />
+          {sidebar}
           {children}
         </Providers>
       </body>

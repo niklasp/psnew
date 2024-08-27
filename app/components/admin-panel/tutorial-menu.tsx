@@ -53,6 +53,7 @@ export function TutorialMenu({ isOpen = true }: MenuProps) {
           </Link>
         </div>
         <ul className="flex flex-col min-h-[calc(100vh-48px-36px-16px-32px-4rem)] lg:min-h-[calc(100vh-32px-40px-32px)] items-start space-y-1 px-2">
+          yoyoyo
           {menuList.map(({ groupLabel, menus }, index) => (
             <li className={cn("w-full", groupLabel ? "pt-5" : "")} key={index}>
               {(isOpen && groupLabel) || isOpen === undefined ? (

@@ -16,7 +16,7 @@ export default async function BlogPage() {
 
         <div className="grid gap-3 py-6">
           {posts?.map((post) => (
-            <PostListItem post={post} />
+            <PostListItem post={post} key={post.slug} />
           ))}
         </div>
 

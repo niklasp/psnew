@@ -68,7 +68,7 @@ export function Navbar({ title }: NavbarProps) {
                 Tutorials
               </Link>
               <Link
-                href="#"
+                href="/authors"
                 className="text-sm font-medium hover:text-[var(--polkadot-purple)] transition"
                 prefetch={false}
               >

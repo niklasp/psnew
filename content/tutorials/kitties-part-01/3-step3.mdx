@@ -1,28 +1,30 @@
 # Kitties pallet: scaffold & main logic
 
-Lets check and enumerate what we want the pallet to be able to do. And order it in a logical and 
-progressive way, so we can build it step by step.
+Lets check and enumerate what we want the pallet to be able to do. And order it
+in a logical and progressive way, so we can build it step by step.
 
 1. Create a kitty (for first time and by breeding).
 2. Change the price of a kitty.
 3. Change the owner of a kitty (transfer or buy).
 
-Notice number 2 and 3 are actions that will change some information about the kitty: its price or owner.
+Notice number 2 and 3 are actions that will change some information about the
+kitty: its price or owner.
 
-:::info
+<Box type="info">
 A pallet, at its simplest, is composed of 3 parts:
 
 1. Storage: This is where the pallet stores its data. It is a key-value store.
-2. Dispatchable functions: These functions materialize as "extrinsics", which are often compared to 
-transactions.
-3. Events and errors: Events are used to inform users when important changes are made. Errors inform 
-users that something went wrong.
-:::
+2. Dispatchable functions: These functions materialize as "extrinsics", which
+   are often compared to transactions.
+3. Events and errors: Events are used to inform users when important changes are
+   made. Errors inform users that something went wrong.
+
+</Box>
 
 ## Kitties pallet scaffold
 
-We'll be spending most of this tutorial in the pallets directory of our template node. 
-Let's take a glance at the folder structure in our workspace:
+We'll be spending most of this tutorial in the pallets directory of our template
+node. Let's take a glance at the folder structure in our workspace:
 
 ```
 substrate-node-template          <--  The name of our project directory
@@ -47,27 +49,35 @@ substrate-node-template          <--  The name of our project directory
 |
 +-- Cargo.toml
 ```
-[Pallets](https://doc.deepernetwork.org/v3/runtime/frame/#pallets) in Substrate are used to define runtime
- logic. We will be creating a pallet that manages the logic of our Kitties application.
 
-Let's lay out the basic structure of our pallet by outlining the parts inside `pallets/kitties/src/lib.rs`.
+[Pallets](https://doc.deepernetwork.org/v3/runtime/frame/#pallets) in Substrate
+are used to define runtime logic. We will be creating a pallet that manages the
+logic of our Kitties application.
 
-Notice that our pallet's directory `./pallets/kitties/` is not the same as our pallet's name. The name of 
-our pallet as Cargo understands it is `pallet-kitties`.
+Let's lay out the basic structure of our pallet by outlining the parts inside
+`pallets/kitties/src/lib.rs`.
+
+Notice that our pallet's directory `./pallets/kitties/` is not the same as our
+pallet's name. The name of our pallet as Cargo understands it is
+`pallet-kitties`.
 
 Every FRAME pallet has:
 
-* A set of frame_support and frame_system dependencies.
-* Required [attribute macros](https://doc.deepernetwork.org/v3/runtime/macros/#frame-macros-and-attributes)
- (i.e. configuration traits, storage items and function calls).
+- A set of frame_support and frame_system dependencies.
+- Required
+  [attribute macros](https://doc.deepernetwork.org/v3/runtime/macros/#frame-macros-and-attributes)
+  (i.e. configuration traits, storage items and function calls).
 
-We'll be including all dependencies necessary for the kitties pallet in the scaffold.
+We'll be including all dependencies necessary for the kitties pallet in the
+scaffold.
 
-Here's the most bare-bones version of the Kitties pallet we will be building in this tutorial. It contains 
-the starting point for adding code for the next sections. It contains comments marked with `TODO` to indicate
-code we will be writing later.
+Here's the most bare-bones version of the Kitties pallet we will be building in
+this tutorial. It contains the starting point for adding code for the next
+sections. It contains comments marked with `TODO` to indicate code we will be
+writing later.
 
-Paste the following code in `./pallets/kitties/src/lib.rs`, in place of the code that was there before:
+Paste the following code in `./pallets/kitties/src/lib.rs`, in place of the code
+that was there before:
 
 ```rust
 #![cfg_attr(not(feature = "std"), no_std)]
@@ -164,26 +174,29 @@ pub mod pallet {
 		// TODO: Mint a new kitty and add it to the storage.
 
 		// TODO: Update the storage to transfer a kitty from one owner to another.
-	
+
 	}
 }
 ```
 
-Now, try running the following command to build your pallet. We won't build the entire chain just yet 
-because we haven't yet implemented the `Currency` type in our runtime. At least we can check that there are 
-no errors in our pallet so far:
+Now, try running the following command to build your pallet. We won't build the
+entire chain just yet because we haven't yet implemented the `Currency` type in
+our runtime. At least we can check that there are no errors in our pallet so
+far:
 
 ```bash
 cargo build -p pallet-kitties
 ```
+
 We will get some errors related to imports that we have to fix.
 
-* `sp_io::hashing::blake2_128`:
+- `sp_io::hashing::blake2_128`:
 
-Move `sp_io` declaration from `[dev-dependencies]` to `[dependencies]` in the `cargo.toml` file of the 
-pallet, with `default-features` set to false (if not compilation of the node will fail later). This is
-necessary because we are using it in the pallet code. Also Add it to the `features` section in the 
-`cargo.toml` file of the pallet, as follows:
+Move `sp_io` declaration from `[dev-dependencies]` to `[dependencies]` in the
+`cargo.toml` file of the pallet, with `default-features` set to false (if not
+compilation of the node will fail later). This is necessary because we are using
+it in the pallet code. Also Add it to the `features` section in the `cargo.toml`
+file of the pallet, as follows:
 
 ```toml
 [dependencies]
@@ -212,11 +225,12 @@ std = [
 ]
 ```
 
-* `sp_runtime::ArithmeticError`
+- `sp_runtime::ArithmeticError`
 
-Do the same for `sp_runtime`: move it from `[dev-dependencies]` to `[dependencies]` in the `cargo.toml` 
-file of the pallet, with `default-features` set to false. Also add it to the `features` section in the 
-`cargo.toml` file of the pallet as follows:
+Do the same for `sp_runtime`: move it from `[dev-dependencies]` to
+`[dependencies]` in the `cargo.toml` file of the pallet, with `default-features`
+set to false. Also add it to the `features` section in the `cargo.toml` file of
+the pallet as follows:
 
 ```toml
 [dependencies]
@@ -245,18 +259,22 @@ std = [
 	"sp-runtime/std",
 ]
 ```
-You'll notice the Rust compiler giving you warnings about unused imports. That's fine! Just ignore them 
-— we're going to be using those imports in the later parts of the tutorial.
+
+You'll notice the Rust compiler giving you warnings about unused imports. That's
+fine! Just ignore them — we're going to be using those imports in the later
+parts of the tutorial.
 
 ## Add storage items
 
-Let's start adding the most simple logic we can to our runtime: a function that stores a variable in 
-runtime. In our case that variable wil be the number of kitties in existence.
+Let's start adding the most simple logic we can to our runtime: a function that
+stores a variable in runtime. In our case that variable wil be the number of
+kitties in existence.
 
-For any storage item we want to declare, we must include the `#[pallet::storage]` macro beforehand.
+For any storage item we want to declare, we must include the
+`#[pallet::storage]` macro beforehand.
 
-In `./pallets/kitties/src/lib.rs`, put the following code to replace `TODO: Storage that keeps track of the 
-number of kitties in existence`:
+In `./pallets/kitties/src/lib.rs`, put the following code to replace
+`TODO: Storage that keeps track of the number of kitties in existence`:
 
 ```rust
 /// Keeps track of the number of kitties in existence.
@@ -264,12 +282,14 @@ number of kitties in existence`:
 pub(super) type CountForKitties<T: Config> = StorageValue<_, u64, ValueQuery>;
 ```
 
-This creates a storage item for our pallet to keep track of the total count of Kitties in existence.
+This creates a storage item for our pallet to keep track of the total count of
+Kitties in existence.
 
 ## Add Currency implementation
 
-Before we proceed with building our node, we need to add the `Currency` type to our pallet's runtime 
-implementation. In `./runtime/src/lib.rs`, add the following:
+Before we proceed with building our node, we need to add the `Currency` type to
+our pallet's runtime implementation. In `./runtime/src/lib.rs`, add the
+following:
 
 ```rust
 impl pallet_kitties::Config for Runtime {
@@ -277,20 +297,23 @@ impl pallet_kitties::Config for Runtime {
     type Currency = Balances; // <-- Add this line
 }
 ```
-Now build your node and make sure you don't have any errors. This will take a little while at first.
+
+Now build your node and make sure you don't have any errors. This will take a
+little while at first.
 
 ```bash
 cargo build --release
 ```
-At this point, if you get an error like in the following image, it is because you did not set 
-`default-features` to false in the `cargo.toml` file of the pallet in previous steps.
+
+At this point, if you get an error like in the following image, it is because
+you did not set `default-features` to false in the `cargo.toml` file of the
+pallet in previous steps.
 
 ![error](./assets/kitties-6.png)
 
-Congratulations! You've completed the first part of the tutorial. At this stage, you've learnt the 
-various patterns for:
+Congratulations! You've completed the first part of the tutorial. At this stage,
+you've learnt the various patterns for:
 
-* Customizing the Substrate Node Template and including a custom pallet.
-* Building a Substrate chain and checking that a target pallet compiles.
-* Declaring a single value `u64` storage item.
-
+- Customizing the Substrate Node Template and including a custom pallet.
+- Building a Substrate chain and checking that a target pallet compiles.
+- Declaring a single value `u64` storage item.

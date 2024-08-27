@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
+
+import { getFileMetadata } from "./util-file";
 
 interface BlogPost {
   title: string;
@@ -35,28 +36,14 @@ export async function generateBlogToc(
     const stat = fs.statSync(fullPath);
 
     if ((stat.isFile() && file.endsWith(".mdx")) || file.endsWith(".md")) {
-      const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data: frontmatter, content } = matter(fileContents);
+      const { title, slug, frontmatter } = getFileMetadata(fullPath);
 
-      // Extract slug, date, and title
-      const fileName = path.basename(file);
-      const dateMatch = fileName.match(/^(\d{4}-\d{2}-\d{2})-(.+)$/);
-      const date = dateMatch ? dateMatch[1] : "";
-      const slug = dateMatch
-        ? dateMatch[2]?.replace(/\.(mdx|md)$/, "")
-        : fileName.replace(/\.(mdx|md)$/, "");
-      const title =
-        frontmatter.title ||
-        content
-          .split("\n")
-          .find((line) => line.startsWith("# "))
-          ?.replace("# ", "") ||
-        slug;
+      const dateMatch = file.match(/^(\d{4}-\d{2}-\d{2})-(.+)$/);
+      const date = dateMatch ? dateMatch[1] : frontmatter.date || "";
 
-      // Create the blog post entry
       const post: BlogPost = {
         title,
-        filename: fileName,
+        filename: file,
         slug,
         date,
         authors: frontmatter.authors || [],
@@ -66,7 +53,6 @@ export async function generateBlogToc(
 
       posts.push(post);
 
-      // Update the authors overview
       post.authors.forEach((author) => {
         if (authorsOverview[author]) {
           authorsOverview[author].push(post);
@@ -77,7 +63,6 @@ export async function generateBlogToc(
     }
   }
 
-  // Sort articles for each author by date
   for (const author in authorsOverview) {
     authorsOverview[author] = getSortedArticles(authorsOverview[author]);
   }

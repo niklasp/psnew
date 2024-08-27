@@ -6,6 +6,7 @@ import { remark } from "remark";
 import remarkFrontmatter from "remark-frontmatter";
 import { visit } from "unist-util-visit";
 import { getTutorialMeta } from "./getTutorialMeta";
+import { cache } from "react";
 
 export interface TutorialTOCItem {
   title: string;
@@ -53,28 +54,31 @@ async function generateSectionToc(
   const sectionTitle = path.basename(sectionPath);
   const tocItems: TutorialTOCItem[] = [];
 
-  // Retrieve the tutorial meta using the function you provided
+  // Retrieve the tutorial meta using the improved function
   const sectionMeta = await getTutorialMeta(sectionTitle);
 
   const files = fs.readdirSync(sectionPath);
   for (const file of files) {
-    const fullPath = path.join(sectionPath, file);
-    const stat = fs.statSync(fullPath);
-
-    if (stat.isFile() && file.endsWith(".mdx")) {
-      const { title, meta } = await extractTitleAndMeta(fullPath);
+    if (file.endsWith(".mdx") || file.endsWith(".md")) {
+      const fullPath = path.join(sectionPath, file);
+      const { title: extractedTitle, meta } = await extractTitleAndMeta(
+        fullPath
+      );
       const fileNameWithoutExt = path.basename(file, path.extname(file));
 
       // Find the corresponding meta section for this file
-      const sectionMetaItem = sectionMeta.sections?.find(
-        (section: any) => section.fileName === fileNameWithoutExt
+      const sectionMetaItem = sectionMeta.sections.find(
+        (section) => section.fileName === fileNameWithoutExt
       );
 
+      const title =
+        sectionMetaItem?.title || extractedTitle || fileNameWithoutExt;
+
       tocItems.push({
-        title: sectionMetaItem?.title || title,
+        title,
         url: `/tutorials/${path
           .relative("content/tutorials", fullPath)
-          .replace(/\.mdx$/, "")}`,
+          .replace(/\.mdx?$/, "")}`,
         depth: 1,
         meta: sectionMetaItem || meta
       });
@@ -82,14 +86,21 @@ async function generateSectionToc(
   }
 
   return {
-    title: sectionTitle,
+    title: sectionMeta.title || sectionTitle,
     path: sectionPath,
-    meta: sectionMeta, // Correctly associate the meta to the section
-    sections: [...tocItems, ...(sectionMeta?.sections || [])]
+    meta: sectionMeta,
+    sections: tocItems
   };
 }
 
-export async function generateTutorialToc(
+// Cache the result of generateTutorialToc
+export const getTutorialToc = cache(
+  async (basePath: string = "content/tutorials") => {
+    return generateTutorialToc(basePath);
+  }
+);
+
+async function generateTutorialToc(
   basePath: string = "content/tutorials"
 ): Promise<TutorialSection[]> {
   const sections = fs.readdirSync(basePath);
@@ -106,4 +117,20 @@ export async function generateTutorialToc(
   }
 
   return toc;
+}
+
+// Helper function to get a specific section
+export async function getTutorial(
+  tutorialFilename: string
+): Promise<TutorialSection | undefined> {
+  const toc = await getTutorialToc();
+  const data = toc.find((section) => section.path.endsWith(tutorialFilename));
+  return data;
+}
+
+export async function getTutorialSections(
+  tutorialFilename: string
+): Promise<TutorialTOCItem[]> {
+  const data = await getTutorial(tutorialFilename);
+  return data?.sections || [];
 }

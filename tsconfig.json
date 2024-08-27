@@ -19,8 +19,10 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "target": "ES2020",
+    "outDir": "./dist"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "scripts/replace-admonitions.js", "app/components/learning/mdxAdmonitionPlugin.js", "scripts/**/*"],
   "exclude": ["node_modules"]
 }

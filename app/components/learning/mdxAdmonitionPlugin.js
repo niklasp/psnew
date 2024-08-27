@@ -1,6 +1,6 @@
-export default function remarkAdmonitions() {
-  const { visit } = await import("unist-util-visit");
-  
+const { visit } = require("unist-util-visit");
+
+function remarkAdmonitions() {
   return (tree) => {
     visit(tree, (node) => {
       if (
@@ -22,3 +22,5 @@ export default function remarkAdmonitions() {
     });
   };
 }
+
+module.exports = remarkAdmonitions;

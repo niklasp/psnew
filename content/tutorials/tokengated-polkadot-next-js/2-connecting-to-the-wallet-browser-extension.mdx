@@ -19,17 +19,13 @@ All this comes from the polkadot.js browser extension. If you have never worked
 with it before, the [cookbook](https://polkadot.js.org/docs/extension/cookbook)
 is a good place to start exploring it.
 
-:::info
-
-There are many wallet browser extensions for the polkadot ecosystem. In this
+<Box type="info">There are many wallet browser extensions for the polkadot ecosystem. In this
 demo we use the basic
 [Polkadot\{.js\} "developer" extension](https://polkadot.js.org/extension/).
 Other popular extensions are [Talisman](https://www.talisman.xyz/) or
 [Subwallet](https://subwallet.app/). The tutorial works for any extension a user
 has installed due to the way the third party wallets are injected into the
-browser.
-
-:::
+browser.</Box>
 
 While everything in this dApp could be handled without react Context and a
 ContextProvider
@@ -221,13 +217,9 @@ component that displays a profile for the currently logged in user, showing
 their tokens, or their balances, you would need that `accounts` data over again,
 and can with the following code easily reuse it without prop drilling.
 
-:::info
-
-If you have never worked with _Context_ in react before or do not understand
+<Box type="info">If you have never worked with _Context_ in react before or do not understand
 when to use it, read the excellent
-[react dev documentation on Context](https://react.dev/learn/passing-data-deeply-with-context).
-
-:::
+[react dev documentation on Context](https://react.dev/learn/passing-data-deeply-with-context).</Box>
 
 To get started with Context, create a file
 `context/polkadot-extension-context.ts` and add the following code.

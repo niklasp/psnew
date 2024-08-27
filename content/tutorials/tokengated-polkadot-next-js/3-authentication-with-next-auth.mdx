@@ -38,13 +38,11 @@ in next.js brings.
   server-side API will only be used for authorizing the users, i.e. verifying a
   signature and validating the signed data
 
-:::info
-
-If you need to refresh your knowledge about the difference between Server-Side
-Rendering and Static Generation, or have never heard of them.
-[Read along here](https://nextjs.org/learn/basics/data-fetching/two-forms)
-
-:::
+<Box type="info">
+  If you need to refresh your knowledge about the difference between Server-Side
+  Rendering and Static Generation, or have never heard of them. [Read along
+  here](https://nextjs.org/learn/basics/data-fetching/two-forms)
+</Box>
 
 ## Configuring next-auth
 
@@ -89,14 +87,13 @@ interface User {
 }
 ```
 
-:::info
-
-You can return arbitrary data here. In our example we use `freeBalance` as the
-tokengate checks it anyway and can be populated easily. When you use a different
-token to check for, e.g. NFTs from a certain collection, you could e.g. store
-`nfts: number[]` with all the NFTs from that collection a user holds.
-
-:::
+<Box type="info">
+  You can return arbitrary data here. In our example we use `freeBalance` as the
+  tokengate checks it anyway and can be populated easily. When you use a
+  different token to check for, e.g. NFTs from a certain collection, you could
+  e.g. store `nfts: number[]` with all the NFTs from that collection a user
+  holds.
+</Box>
 
 The following code snippet shows the full authorize function with annotations.
 Have a look at it first and try to understand the parts for yourself, with a
@@ -181,8 +178,7 @@ function and the usage of the polkadot API.
    the user's freeBalance is greater than 1 KSM, that is the only possible
    branch, where non null data is returned.
 
-:::info
-
+<Box type="info">
 You hardcoded the RPC endpoint to a constant value, that the user can configure
 in ther `.env` with a fallback to `wss://kusama-rpc.dwellir.com`. In a
 production environment, you will most likely not rely on only one RPC endpoint
@@ -193,7 +189,7 @@ If you want to know more about how substrate chains store tokenbalances and what
 `BN` is in the code above, read about
 [Type Basics](https://polkadot.js.org/docs/api/start/types.basics/)
 
-:::
+</Box>
 
 Also notice the many `Promise.reject(...)` lines. That is to make sure that when
 any issue appears, either signature validation, or other errors, no `user` is
@@ -219,7 +215,7 @@ import { PolkadotExtensionContextProvider } from "@/context/polkadotExtensionCon
 
 export default function App({
   Component,
-  pageProps: { session, ...pageProps },
+  pageProps: { session, ...pageProps }
 }: AppProps) {
   return (
     <SessionProvider session={session}>

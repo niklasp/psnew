@@ -1,4 +1,5 @@
 export const meta = {
+  lastUpdated: '2024-08-27T09:56:12.176Z',
   title: "How to build the Substrate Kitties Chain",
   description:
     "From the substrate node template to a fully functional blockchain that handles kitties NFTs.",
@@ -8,11 +9,14 @@ export const meta = {
   category: "Polkadot SDK",
   sections: [
     { fileName: "0-intro", title: "Introduction" },
-    { fileName: "1-setup", title: "Implementation" },
-    {
-      fileName: "2-connecting-to-the-wallet-browser-extension",
-      title: "Connecting to the wallet browser extension"
-    },
-    { fileName: "3-conclusion", title: "Conclusion" }
+    { fileName: "1-step1", title: "Node Template Set Up" },
+    { fileName: "2-step2", title: "Creating the Kitties Pallet" },
+    { fileName: "3-step3", title: "Implementing Kitty Functions" },
+    { fileName: "4-step4", title: "Adding Events and Errors" },
+    { fileName: "5-step5", title: "Configuring the Runtime" },
+    { fileName: "6-step6", title: "Testing the Pallet" },
+    { fileName: "7-step7", title: "Substrate Front-end Template" },
+    { fileName: "8-step8", title: "The Kitties Components" },
+    { fileName: "9-conclusion", title: "Conclusion" }
   ]
 };

@@ -11,7 +11,8 @@ import { TutorialSyllabus } from "@/app/components/learning/tutorial/tutorial-sy
 import { TutorialIntroBottom } from "@/app/components/learning/tutorial/tutorial-intro-bottom";
 import { Button } from "@/app/components/ui/button";
 import { BookType } from "lucide-react";
-import { getTutorialPath } from "@/app/lib/util-path";
+import { getTutorialPath, getTutorialSections } from "@/app/lib/util-path";
+import { Breadcrumbs, generateBreadcrumbs } from "@/app/components/Breadcrumbs";
 
 export default async function TutorialOverviewPage({ params }) {
   const { tutorial } = params;
@@ -23,22 +24,14 @@ export default async function TutorialOverviewPage({ params }) {
     return notFound();
   }
 
-  const files = fs
-    .readdirSync(tutorialPath)
-    .filter((file) => file.endsWith(".mdx"));
-  const sections = files.map((file) => ({
-    name: file
-      .replace(/\.mdx$/, "")
-      .replace(/^\d+-/, "")
-      .replace(/-/g, " "),
-    fileName: file.replace(/\.mdx$/, "")
-  }));
-
   const meta = await getTutorialMeta(tutorial);
+  const sections = getTutorialSections(tutorial, meta.sections);
+  const breadcrumbs = await generateBreadcrumbs({ tutorial: params.tutorial });
 
   return (
     <main className="px-8 py-4 overflow-hidden w-full">
       <div className="max-w-5xl mx-auto">
+        <Breadcrumbs items={breadcrumbs} />
         <TutorialIntroTop tutorial={tutorial} meta={meta} />
         <TutorialIntroBottom tutorial={tutorial} meta={meta} />
         <TutorialSyllabus sections={sections} tutorial={tutorial} />

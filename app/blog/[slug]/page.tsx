@@ -7,6 +7,7 @@ import generateBlogToc from "@/app/lib/generate-blog-toc";
 import { CustomMDX } from "@/app/components/mdx";
 import { ContentLayout } from "@/app/components/admin-panel/content-layout";
 import AdminPanelLayout from "@/app/components/admin-panel/admin-panel-layout";
+import { Breadcrumbs, generateBreadcrumbs } from "@/app/components/Breadcrumbs";
 
 interface BlogPostProps {
   params: {
@@ -34,8 +35,11 @@ export default async function BlogPost({ params }: BlogPostProps) {
   // Serialize the MDX content so it can be rendered
   const mdxSource = content;
 
+  const breadcrumbs = await generateBreadcrumbs({ slug });
+
   return (
     <ContentLayout title={"test"}>
+      <Breadcrumbs items={breadcrumbs} />
       <div className="prose dark:prose-invert w-full mx-auto">
         <CustomMDX source={content} />
       </div>

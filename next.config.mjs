@@ -1,5 +1,4 @@
 import createMDX from "@next/mdx";
-import { remarkAdmonitions } from "./app/components/learning/remarkAdmonitions.mjs";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -8,7 +7,7 @@ const nextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkAdmonitions],
+    remarkPlugins: [],
     rehypePlugins: []
   }
 });

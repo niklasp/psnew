@@ -24,7 +24,9 @@ export function TutorialSyllabus({ sections, tutorial }) {
                 {index}
               </span>
               <span className="group-hover:translate-x-1 inline-block transition-transform">
-                {toTitleCase(section.name)}
+                {section.title ||
+                  toTitleCase(section.fileName) ||
+                  `Section ${index + 1}`}
               </span>
             </Link>
           </li>

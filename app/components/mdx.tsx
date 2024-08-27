@@ -4,8 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
 import React from "react";
 import Quiz from "./learning/quiz/index";
-import remarkAdmonitions from "remark-admonitions";
-import Admonition from "./learning/admoniton";
+import Box from "./learning/box";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -110,7 +109,7 @@ let components = {
   code: Code,
   Table,
   Quiz,
-  Admonition: Admonition
+  Box
 };
 
 export function CustomMDX(props) {
