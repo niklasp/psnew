@@ -117,7 +117,7 @@ UI component you need.
 ### Login Button
 
 The `LoginButton` component is more complex than the `AccountSelect` but it will
-be breaken down into parts in this paragraph. Have a look at the
+be broken down into parts in this paragraph. Have a look at the
 `components/login-button.tsx` file.
 
 You will find 2 `TODO`s
@@ -288,7 +288,7 @@ const handleLogin = async () => {
         "Sign in with polkadot extension to the example tokengated example dApp",
       uri: window.location.origin,
       nonce: await getCsrfToken(),
-      version: "1",
+      version: "1"
     };
 
     const signRaw = injector?.signer?.signRaw;
@@ -299,7 +299,7 @@ const handleLogin = async () => {
       const data = await signRaw({
         address: actingAccount.address,
         data: JSON.stringify(message),
-        type: "bytes",
+        type: "bytes"
       });
 
       signature = data.signature;
@@ -312,7 +312,7 @@ const handleLogin = async () => {
       message: JSON.stringify(message),
       name: actingAccount?.meta?.name,
       signature,
-      address: actingAccount?.address,
+      address: actingAccount?.address
     });
 
     // take the user to the protected page if they are allowed
@@ -350,8 +350,10 @@ All those data are _signed_ which means that with that signature, we can really
 verify that the private key has used our dApp at the `uri` with the specified
 version.
 
-<Box type="info">Learn more on Polkadot's
-[Sign and Verify](https://polkadot.js.org/docs/keyring/start/sign-verify/)</Box>
+<Box type="info">
+  Learn more on Polkadot's [Sign and
+  Verify](https://polkadot.js.org/docs/keyring/start/sign-verify/)
+</Box>
 
 That was a lot. Take a moment to go over the material in this chapter again and
 make sure you understood things. The following two chapters will teach you about

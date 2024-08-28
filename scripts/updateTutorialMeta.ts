@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import chalk from "chalk";
 import { execSync } from "child_process";
 
 const tutorialsPath = path.join(process.cwd(), "content", "tutorials");
@@ -20,7 +21,9 @@ function hasChangesInTutorial(tutorialPath: string): boolean {
 
 function updateTutorialMeta(tutorialPath: string) {
   if (!hasChangesInTutorial(tutorialPath)) {
-    console.log(`No changes in ${tutorialPath}, skipping update.`);
+    console.info(
+      chalk.blue(`[info] No changes in ${tutorialPath}, skipping update.`)
+    );
     return;
   }
 
@@ -47,10 +50,14 @@ function updateTutorialMeta(tutorialPath: string) {
     )}',\n  description: '',\n  category: 'Uncategorized',\n  tags: [],\n  sections: []\n};\n`;
   }
 
+  console.info(
+    chalk.green(`[info] Updated ${tutorialPath} lastUpdated to ${lastUpdated}`)
+  );
   fs.writeFileSync(metaPath, metaContent);
 }
 
 function processTutorials() {
+  console.info(chalk.green("[info] Updating tutorial metadata..."));
   const tutorials = fs.readdirSync(tutorialsPath);
   tutorials.forEach((tutorial) => {
     const tutorialPath = path.join(tutorialsPath, tutorial);
