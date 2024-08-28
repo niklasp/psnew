@@ -3,11 +3,12 @@ import { GraduationCap, NotebookPen, PenLineIcon } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
 import { RoadMap } from "./components/home/roadmap";
-import { TutorialGrid } from "./components/learning/tutorial-grid";
+import { TutorialGrid } from "./components/learning/tutorial/tutorial-grid";
 import { PointerTrackingSection } from "./components/3d/pointer-tracking-section";
 import { getTutorials } from "./lib/get-tutorials";
 import Dots from "./components/3d/dots";
 import { DotsBackground } from "./components/3d/dots-background";
+import { CubeLogo, TestLogo } from "./components/icons";
 
 export default async function HomePage() {
   const tutorials = await getTutorials();

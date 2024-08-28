@@ -8,7 +8,7 @@ import { TutorialIntroBottom } from "@/app/components/learning/tutorial/tutorial
 import { Button } from "@/app/components/ui/button";
 import { BookType } from "lucide-react";
 import { getTutorialPath, getTutorialSections } from "@/app/lib/util-path";
-import { Breadcrumbs, generateBreadcrumbs } from "@/app/components/Breadcrumbs";
+import { Breadcrumbs, generateBreadcrumbs } from "@/app/components/breadcrumbs";
 
 export default async function TutorialOverviewPage({
   params

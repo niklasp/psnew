@@ -10,7 +10,7 @@ import {
   Stars
 } from "lucide-react";
 import { StarFilledIcon } from "@radix-ui/react-icons";
-import { TutorialLevel } from "../tutorial-level";
+import { TutorialLevel } from "./tutorial-level";
 import Link from "next/link";
 
 export function TutorialIntroTop({

@@ -1,7 +1,8 @@
 import { cn } from "@/app/lib/utils";
 import { Clock, Tag, TagIcon } from "lucide-react";
 import Link from "next/link";
-import { TutorialLevel } from "../tutorial-level";
+import { TutorialLevel } from "./tutorial-level";
+import { TutorialUpdated } from "./tutorial-updated";
 
 export default function TutorialCard({
   tutorial,
@@ -27,12 +28,17 @@ export default function TutorialCard({
         className="absolute inset-0 rounded-3xl z-[0]"
       />
       <div className="flex flex-col h-full items-start">
-        {meta.level && (
-          <TutorialLevel
-            difficulty={meta.level}
-            className="px-1.5 py-0.5 rounded-md mb-3 inline-flex"
-          />
-        )}
+        <div className="flex flex-row justify-between w-full">
+          {meta.level && (
+            <TutorialLevel
+              difficulty={meta.level}
+              className="px-1.5 py-0.5 rounded-md mb-3 inline-flex mr-2"
+            />
+          )}
+          {meta.lastUpdated && (
+            <TutorialUpdated lastUpdated={meta.lastUpdated} />
+          )}
+        </div>
         <h2 className="text-[26px] leading-[28px] mb-3 font-bold">
           {meta.title}
         </h2>

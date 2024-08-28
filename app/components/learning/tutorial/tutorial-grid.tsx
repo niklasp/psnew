@@ -1,7 +1,7 @@
 "use client";
 
 import { useApp } from "@/app/providers/app-provider";
-import TutorialCard from "./tutorial/tutorial-card";
+import TutorialCard from "./tutorial-card";
 import {
   Donut,
   DonutIcon,
@@ -74,7 +74,7 @@ export function TutorialGrid({
         </p>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:-grid-cols-3 gap-6 w-full">
         {filteredTutorials.map(({ tutorial, meta }) => (
           <TutorialCard key={tutorial} tutorial={tutorial} meta={meta} />
         ))}

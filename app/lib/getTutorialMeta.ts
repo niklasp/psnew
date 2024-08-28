@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { toTitleCase } from "./utils";
 import { getFileMetadata } from "./util-file";
-import { TutorialMeta } from "@/types";
+import { TutorialMeta } from "@/app/types";
 
 export async function getTutorialMeta(tutorial: string) {
   const tutorialPath = path.join(

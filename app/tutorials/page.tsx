@@ -1,5 +1,5 @@
 import { ContentLayout } from "../components/admin-panel/content-layout";
-import { TutorialGrid } from "../components/learning/tutorial-grid";
+import { TutorialGrid } from "../components/learning/tutorial/tutorial-grid";
 import { featured } from "../lib/config";
 import { FeaturedTutorials } from "../components/learning/featured-tutorials";
 import { getTutorials } from "../lib/get-tutorials";

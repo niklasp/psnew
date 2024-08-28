@@ -10,6 +10,12 @@ import { Button } from "../ui/button";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { cn } from "@/app/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from "../ui/tooltip";
 
 interface NavbarProps {
   title: string;
@@ -90,21 +96,27 @@ export function Navbar({ title }: NavbarProps) {
                 <input
                   type="search"
                   placeholder="Search..."
-                  className="w-full rounded-md bg-foreground/60 pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--polkadot-purple)] focus:border-primary hidden md:flex"
+                  className="w-full rounded-md pl-9 pr-4 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--polkadot-purple)] hidden md:flex border-2 border-input bg-background shadow-sm hover:bg-accent"
                 />
               </div>
             </div>
             <div className="flex items-center space-x-2 justify-end">
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full w-8 h-8 bg-background"
-                asChild
-              >
-                <Link href="https://github.com/PolkadotStudy/polkadot.study">
-                  <GitHubLogoIcon className="h-[1.2rem] w-[1.2rem]" />
-                </Link>
-              </Button>
+              <TooltipProvider disableHoverableContent>
+                <Tooltip delayDuration={100}>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="rounded-full w-8 h-8 bg-background"
+                    >
+                      <Link href="https://github.com/PolkadotStudy/polkadot.study">
+                        <GitHubLogoIcon className="h-[1.2rem] w-[1.2rem]" />
+                      </Link>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom">View on Github</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <ModeToggle />
               <UserNav />
             </div>

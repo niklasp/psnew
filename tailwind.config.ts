@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-function generateShades(h, s, l, stepsize = 9) {
+function generateShades(h: number, s: number, l: number, stepsize = 9) {
   const shades: Record<string, string> = {};
   shades["DEFAULT"] = `hsl(${h}, ${s}%, ${l}%)`;
   for (let i = 1; i <= 9; i++) {

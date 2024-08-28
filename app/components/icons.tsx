@@ -70,6 +70,122 @@ export function PolkadotLogo(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+export function TestLogo(props: React.SVGProps<SVGSVGElement>) {
+  const centerX = 200;
+  const centerY = 200;
+  const outerRadius = 80;
+  const dotRadius = 7;
+
+  function createCircle(radius: number, numDots: number) {
+    return Array.from({ length: numDots }, (_, i) => {
+      const angle = (i * 2 * Math.PI) / numDots;
+      const x = centerX + radius * Math.cos(angle + Math.PI / 2);
+      const y = centerY + radius * Math.sin(angle + Math.PI / 2);
+      return { x, y, fill: i % 2 === 0 ? "#552bbf" : "#552bbf" };
+    });
+  }
+
+  const innerRadius = outerRadius / 3;
+  const middleRadius = (2 * outerRadius) / 3;
+
+  const centerDot = [{ x: centerX, y: centerY, fill: "var(--polkadot-pink)" }];
+  const innerDots = createCircle(innerRadius, 6);
+  const middleDots = createCircle(middleRadius, 10);
+  const outerDots = createCircle(outerRadius, 14);
+
+  return (
+    <div className="group w-[400px] h-[400px] relative flex items-center justify-center">
+      <span className="text-white text-[180px] font-bold leading-[180px] group-hover:animate-spin-slow">
+        S
+      </span>
+      <svg
+        width="400"
+        height="400"
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute mix-blend-difference"
+      >
+        <g id="logo">
+          <g id="concentric-circles">
+            {[centerDot, innerDots, middleDots, outerDots].flatMap(
+              (circle, circleIndex) =>
+                circle.map((dot, dotIndex) => (
+                  <circle
+                    className="mix-blend-difference hover:fill-white animate-colors duration-1000"
+                    key={`${circleIndex}-${dotIndex}`}
+                    cx={dot.x}
+                    cy={dot.y}
+                    r={dotRadius}
+                    fill={dot.fill}
+                  />
+                ))
+            )}
+          </g>
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+export function CubeLogo(props: React.SVGProps<SVGSVGElement>) {
+  const size = 200;
+  const center = size / 2;
+  const cubeSize = 120;
+  const dotRadius = 4;
+  const dotsPerEdge = 5;
+
+  function createEdge(start: [number, number], end: [number, number]) {
+    return Array.from({ length: dotsPerEdge }, (_, i) => ({
+      x: start[0] + (end[0] - start[0]) * (i / (dotsPerEdge - 1)),
+      y: start[1] + (end[1] - start[1]) * (i / (dotsPerEdge - 1))
+    }));
+  }
+
+  const centerPoint: [number, number] = [center, center];
+  const bottomPoint: [number, number] = [center, center + cubeSize / 2];
+  const topLeftPoint: [number, number] = [
+    center - cubeSize / 2,
+    center - cubeSize / 4
+  ];
+  const topRightPoint: [number, number] = [
+    center + cubeSize / 2,
+    center - cubeSize / 4
+  ];
+
+  const edges = [
+    createEdge(centerPoint, bottomPoint),
+    createEdge(centerPoint, topLeftPoint),
+    createEdge(centerPoint, topRightPoint),
+    createEdge(bottomPoint, [
+      bottomPoint[0] - cubeSize / 2,
+      bottomPoint[1] - cubeSize / 4
+    ]),
+    createEdge(bottomPoint, [
+      bottomPoint[0] + cubeSize / 2,
+      bottomPoint[1] - cubeSize / 4
+    ]),
+    createEdge(topLeftPoint, [
+      topLeftPoint[0],
+      topLeftPoint[1] + (cubeSize * 3) / 4
+    ])
+  ];
+
+  return (
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} {...props}>
+      <g id="cube-logo">
+        {edges.flat().map((dot, index) => (
+          <circle
+            key={index}
+            cx={dot.x}
+            cy={dot.y}
+            r={dotRadius}
+            fill={index % 2 === 0 ? "var(--polkadot-pink)" : "#552bbf"}
+          />
+        ))}
+      </g>
+    </svg>
+  );
+}
+
 export function PolkadotStudyLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

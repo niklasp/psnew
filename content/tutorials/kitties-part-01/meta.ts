@@ -1,5 +1,5 @@
 export const meta = {
-  lastUpdated: '2024-08-27T10:05:07.179Z',
+  lastUpdated: '2024-08-28T16:02:30.219Z',
   title: "How to build the Substrate Kitties Chain",
   description:
     "From the substrate node template to a fully functional blockchain that handles kitties NFTs.",

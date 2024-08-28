@@ -1,23 +1,16 @@
-import { Button } from "../../ui/button";
 import { codify } from "../../../lib/utils";
 import {
-  BookType,
-  Brain,
   CheckCheck,
   Clock,
-  CodeIcon,
   MessageCircleCode,
   Monitor,
   Puzzle,
-  ScrollText,
-  StarHalfIcon,
-  StarIcon,
-  StarOff,
-  Stars
+  ScrollText
 } from "lucide-react";
 import { GitHubLogoIcon, StarFilledIcon } from "@radix-ui/react-icons";
-import { difficultyType, TutorialLevel } from "../tutorial-level";
+import { TutorialLevel } from "./tutorial-level";
 import { TutorialTOCItem } from "@/app/lib/generate-tutorial-toc";
+import { difficultyType } from "@/app/types";
 
 interface TutorialIntroBottomProps {
   tutorial: string;

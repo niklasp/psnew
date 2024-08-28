@@ -2,16 +2,19 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/app/components/mdx";
 import {
-  getTutorialToc,
   getTutorial,
   getTutorialSections
 } from "@/app/lib/generate-tutorial-toc";
 import matter from "gray-matter";
-import { Breadcrumbs, generateBreadcrumbs } from "@/app/components/Breadcrumbs";
 import fs from "fs";
 import path from "path";
+import { Breadcrumbs, generateBreadcrumbs } from "@/app/components/breadcrumbs";
 
-export default async function TutorialSectionPage({ params }) {
+export default async function TutorialSectionPage({
+  params
+}: {
+  params: { tutorial: string; section: string };
+}) {
   const { tutorial, section } = params;
 
   const tutorialData = await getTutorial(tutorial);
@@ -61,7 +64,7 @@ export default async function TutorialSectionPage({ params }) {
           <Link href={nextSection.url}>Next: {nextSection.title}</Link>
         )}
         <Link href={`/tutorials/${tutorial}`}>
-          Back to {tutorialData.meta.title}
+          Back to {tutorialData.meta?.title}
         </Link>
       </div>
     </div>

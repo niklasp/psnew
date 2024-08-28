@@ -1,7 +1,6 @@
 import { cn } from "@/app/lib/utils";
+import { difficultyType } from "@/app/types";
 import { Circle, CircleDot, CircleSlash, Dot } from "lucide-react";
-
-export type difficultyType = "beginner" | "intermediate" | "expert";
 
 export function TutorialLevel({
   difficulty,
