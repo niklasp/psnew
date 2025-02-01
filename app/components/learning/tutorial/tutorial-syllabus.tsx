@@ -9,14 +9,14 @@ export function TutorialSyllabus({
   tutorial: any;
 }) {
   return (
-    <div className="w-full p-8">
+    <div className="w-full">
       <h3 className="text-lg font-bold">Syllabus</h3>
       <div className="mb-4 flex gap-2">
         <span>{sections.length} sections</span>
         <span>{4} quizzes</span>
         <span>{8} sections</span>
       </div>
-      <ul className="w-2/3 divide-y">
+      <ul className="w-2/3 -ml-4 mb-8">
         {sections.map((section: any, index: number) => (
           <li
             key={section.fileName}
@@ -26,7 +26,7 @@ export function TutorialSyllabus({
               className="p-4 block"
               href={`/tutorials/${tutorial}/${section.fileName}`}
             >
-              <span className="group-hover:border border-polkadot-secondary-200 rounded-full bg-polkadot-secondary w-8 h-8 inline-flex items-center justify-center text-white mr-4">
+              <span className="group-hover:bg-polkadot-secondary-400 transition-all group-hover:scale-110 rounded-full bg-polkadot-secondary w-8 h-8 inline-flex items-center justify-center text-white mr-4">
                 {index}
               </span>
               <span className="group-hover:translate-x-1 inline-block transition-transform">

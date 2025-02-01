@@ -5,6 +5,8 @@ import { highlight } from "sugar-high";
 import React from "react";
 import Quiz from "./learning/quiz/index";
 import Box from "./learning/box";
+import MdxImage from "./mdx-image";
+import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 
 function Table({ data }: { data: any }) {
   let headers = data.headers.map((header: string, index: number) => (
@@ -39,11 +41,12 @@ function CustomLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
     );
   }
 
-  if (href?.startsWith("#")) {
+  if (href?.startsWith("http")) {
     return (
-      <a href={href} {...rest}>
+      <Link href={href} className="group" {...rest}>
+        <ArrowTopRightIcon className="transition-all group-hover:rotate-45 inline-flex mr-1" />
         {children}
-      </a>
+      </Link>
     );
   }
 
@@ -112,9 +115,9 @@ let components = {
   h5: createHeading(5),
   h6: createHeading(6),
   pre: Pre,
-  Image: RoundedImage,
   a: CustomLink,
   code: Code,
+  // img: MdxImage,
   Table,
   Quiz,
   Box
@@ -123,6 +126,7 @@ let components = {
 export function CustomMDX(props: {
   source: string;
   components?: Record<string, React.ComponentType<any>>;
+  slug?: string;
 }) {
   return (
     <MDXRemote

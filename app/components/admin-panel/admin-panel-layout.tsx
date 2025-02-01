@@ -10,7 +10,7 @@ export default async function AdminPanelLayout({
     <>
       <main
         className={cn(
-          "min-h-[calc(100vh_-_56px)] transition-[margin-left] ease-in-out duration-300",
+          "min-h-[calc(100vh_-_56px)] transition-[margin-left] ease-in-out duration-300 pt-6",
           "lg:ml-72"
         )}
       >

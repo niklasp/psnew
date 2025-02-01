@@ -25,7 +25,8 @@ const milestones = [
     status: "future",
     items: [
       "Improve user experience (learning progress)",
-      "Advanced content creation (live editor)"
+      "Advanced content creation (live editor)",
+      "AI Chatbot for learning"
     ]
   },
   {

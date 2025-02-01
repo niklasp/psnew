@@ -2,23 +2,19 @@
 
 import { useApp } from "@/app/providers/app-provider";
 import TutorialCard from "./tutorial-card";
-import {
-  Donut,
-  DonutIcon,
-  TrendingUp,
-  FileSpreadsheet,
-  BookOpen,
-  BookHeart
-} from "lucide-react";
+import { BookOpen } from "lucide-react";
+import { cn } from "@/app/lib/utils";
 
 export function TutorialGrid({
   tutorials,
   className,
+  gridClassName,
   withFilters = false,
   title = ""
 }: {
   tutorials: any[];
   className?: string;
+  gridClassName?: string;
   withFilters?: boolean;
   title?: string;
 }) {
@@ -74,7 +70,12 @@ export function TutorialGrid({
         </p>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:-grid-cols-3 gap-6 w-full">
+      <div
+        className={cn(
+          "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full",
+          gridClassName
+        )}
+      >
         {filteredTutorials.map(({ tutorial, meta }) => (
           <TutorialCard key={tutorial} tutorial={tutorial} meta={meta} />
         ))}

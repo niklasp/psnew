@@ -9,6 +9,7 @@ import matter from "gray-matter";
 import fs from "fs";
 import path from "path";
 import { Breadcrumbs, generateBreadcrumbs } from "@/app/components/breadcrumbs";
+import MdxImage from "@/app/components/mdx-image";
 
 export default async function TutorialSectionPage({
   params
@@ -49,12 +50,26 @@ export default async function TutorialSectionPage({
   const { content: parsedContent, data } = matter(fileContent);
 
   const breadcrumbs = await generateBreadcrumbs({ tutorial, section });
+  const components = {
+    img: (props: any) => (
+      <MdxImage
+        slug={`/_next/static/images/tutorials/${tutorial}`}
+        {...props}
+      />
+    ),
+    Image: (props: any) => (
+      <MdxImage
+        slug={`/_next/static/images/tutorials/${tutorial}`}
+        {...props}
+      />
+    )
+  };
 
   return (
     <div className="mx-auto max-w-3xl">
       <Breadcrumbs items={breadcrumbs} />
       <div className="prose dark:prose-invert prose-pink prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-black prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg dark:prose-headings:text-white">
-        <CustomMDX source={parsedContent} />
+        <CustomMDX source={parsedContent} components={components} />
         {previousSection && (
           <Link href={previousSection.url}>
             Previous: {previousSection.title}

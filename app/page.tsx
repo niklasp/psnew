@@ -42,8 +42,8 @@ export default async function HomePage() {
                   <br />
                   Polkadot Blockchains and DApps
                 </p>
-                <div className="mt-10 flex items-center justify-center gap-x-6">
-                  <Link href="/tutorials" className="h-20">
+                <div className="mt-10 flex items-center justify-center gap-x-6 flex-wrap">
+                  <Link href="/tutorials" className="h-20 w-full md:w-auto">
                     <Button withArrow size="lg">
                       <GraduationCap
                         strokeWidth={1}
@@ -53,7 +53,7 @@ export default async function HomePage() {
                       View Tutorials
                     </Button>
                   </Link>
-                  <Link href="/tutorials" className="h-20">
+                  <Link href="/tutorials" className="h-20 w-full md:w-auto">
                     <Button variant="outline" size="lg">
                       <PenLineIcon strokeWidth={1} size={18} className="mr-2" />{" "}
                       Become an Author
@@ -78,7 +78,7 @@ export default async function HomePage() {
           </div>
           <TutorialGrid
             tutorials={latestTutorials}
-            className="mx-[3rem] my-6"
+            className="mx-[3rem] my-6 grid-cols-3"
           />
           <div className="mx-[3rem] my-6 text-right">
             <Link href="/tutorials">
